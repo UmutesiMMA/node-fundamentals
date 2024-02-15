@@ -1,0 +1,1 @@
+'Here is a detailed schedule for this week and the next one'
