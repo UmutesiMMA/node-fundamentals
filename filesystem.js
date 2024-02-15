@@ -1,4 +1,3 @@
-const { error } = require("console");
 const fs = require("fs");
 //read file
 fs.readFile("./people.js", (error, data) => {
@@ -13,8 +12,14 @@ fs.writeFile(
     if (err) throw err;
   }
 );
+//delete a file
+fs.unlink("./toDelete.js", (err) => {
+  if (err) throw err;
+  console.log("file has been deleted!");
+});
+
 //create directory
-if (!fs.existsSync('./assets')){
+if (!fs.existsSync("./assets")) {
   fs.mkdir("./assets", (err) => {
     if (err) {
       throw err;
@@ -28,6 +33,3 @@ fs.rmdir("./delete", (err) => {
   if (err) throw err;
   console.log("directory deleted successfully");
 });
-//write streams
-
-//read streams
