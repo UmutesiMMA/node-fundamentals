@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require('fs');
 const server = http.createServer((req, res) => {
   console.log("request was made");
   //request object
@@ -9,10 +10,14 @@ const server = http.createServer((req, res) => {
 
   //response object
   console.log(res);
-  res.setHeader("content-Type", "text/plain");
-  res.write("Hello world I guess :)");
-  res.end();//signals (probably not the right term) to end the request else it will be left hanging.
-  console.log(res.getHeaders());
+  res.setHeader("content-Type", "text/html");
+  fs.readFile('./clients-servers/content/index.html',(err,data)=>{
+    if(err)throw err
+    else{
+        res.write(data)
+        res.end()
+    }
+  })
 });
 
 server.listen(3000, "localhost", () => {
