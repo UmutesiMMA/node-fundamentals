@@ -3,15 +3,23 @@ const fs = require('fs');
 const server = http.createServer((req, res) => {
   console.log("request was made");
   //request object
-  for(i in req){
-    console.log(i)
-  }
+  
 //   console.log(req.url, req.method);
-
+let path = './clients-servers/content/'
+switch (req.url){
+    case '/':
+    path+='index.html'
+    break;
+    case '/about':
+    path+='about.html'
+    break;
+    default :
+    path+='notfound.html'
+}
   //response object
   console.log(res);
   res.setHeader("content-Type", "text/html");
-  fs.readFile('./clients-servers/content/index.html',(err,data)=>{
+  fs.readFile(path,(err,data)=>{
     if(err)throw err
     else{
         res.write(data)
