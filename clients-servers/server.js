@@ -1,7 +1,10 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require('lodash')
 const server = http.createServer((req, res) => {
   console.log("request was made");
+  const num = _.random(2,45)
+  console.log(num)
   //request object
 
   //   console.log(req.url, req.method);
@@ -15,17 +18,17 @@ const server = http.createServer((req, res) => {
       path += "about.html";
       res.statusCode = 200;
       break;
-    case "/about-me":
+    case "/about-us":
       res.statusCode = 301;
       res.setHeader("location", "/about");
       res.end();
       break;
     default:
       path += "notfound.html";
-      res.statusCode = 400;
+      res.statusCode = 404;
   }
   //response object
-  console.log(res);
+  // console.log(res);
   res.setHeader("content-Type", "text/html");
   fs.readFile(path, (err, data) => {
     if (err) throw err;
