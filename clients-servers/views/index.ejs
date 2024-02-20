@@ -1,0 +1,16 @@
+<html lang="en">
+  <%- include('./partials/head')%>
+  <link rel="stylesheet" href="/clients-servers/public/style.css">
+  <body>
+    <%- include('./partials/nav') %>
+    <h4>Here goes another empty page</h4>
+    <h6>Or maybe an incomplete project 💀</h6>
+    <% if(blogs.length>0){%> <% blogs.map(blog=>{%>
+    <h3><%= blog.title%></h3>
+    <p><%= blog.content %></p>
+    <% })%> <% } else{ %>
+    <p>There are no blogs yet</p>
+    <%}%>
+    <%- include('./partials/footer')%>
+  </body>
+</html>
