@@ -1,6 +1,6 @@
 <html lang="en">
   <%- include('./partials/head')%>
-  <link rel="stylesheet" href="/clients-servers/public/style.css">
+  <link rel="stylesheet" href="/style.css" />
   <body>
     <%- include('./partials/nav') %>
     <h4>Here goes another empty page</h4>
@@ -10,7 +10,6 @@
     <p><%= blog.content %></p>
     <% })%> <% } else{ %>
     <p>There are no blogs yet</p>
-    <%}%>
-    <%- include('./partials/footer')%>
+    <%}%> <%- include('./partials/footer')%>
   </body>
 </html>

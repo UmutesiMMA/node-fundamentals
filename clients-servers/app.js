@@ -1,20 +1,43 @@
-const express =  require('express')
-const app = express()
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const dbURI = "mongodb+srv://phicasso:@nodeblog.ohkcaan.mongodb.net/";
+mongoose.connect(dbURI);
+const blogs = [
+  { title: "This little life", content: "details go here" },
+  {
+    title: "Little life 2",
+    content: "For more details, read the paragraph below",
+  },
+  { title: "Little life 3", content: "Read the first one" },
+];
+app.set("view engine", "ejs");
 
-app.listen('3000')
+app.listen("3000");
+app.use(express.static("public"));
+app.use((req, res, next) => {
+  console.log(req.method);
+  next(); //without this, the request is left hanging
+});
+app.get("/", (req, res) => {
+  // res.sendFile('/content/index.html',{root:__dirname})
+  console.log("request to home");
+  res.render("index", { title: "Home", blogs });
+});
 
-app.get('/',(req,res)=>{
-    res.sendFile('/content/index.html',{root:__dirname})
-})
+app.get("/about", (_, res) => {
+  //   res.sendFile("/content/about.html", { root: __dirname });
+  res.render("about", { title: "About" });
+});
 
-app.get('/about',(_,res)=>{
-    res.sendFile('/content/about.html',{root:__dirname})
-})
+app.get("/about-us", (_, res) => {
+  res.status(301).render("about");
+});
 
-app.get('/about-us',(_,res)=>{
-    res.redirect('/about.html')
-})
-
-app.use((_,res)=>{
-    res.status(404).sendFile('/content/notfound.html',{root:__dirname})
-})
+app.get("/create", (_, res) => {
+  res.render("create", { title: "Create blog" });
+});
+app.use((_, res) => {
+  //   res.status(404).sendFile("/content/notfound.html", { root: __dirname });
+  res.render("notfound", { title: "404" });
+});
