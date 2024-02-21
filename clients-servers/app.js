@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+
+const morgan = require('morgan')
+
 const mongoose = require("mongoose");
+
 const dbURI = "mongodb+srv://phicasso:@nodeblog.ohkcaan.mongodb.net/";
 mongoose.connect(dbURI);
 const blogs = [
@@ -11,10 +15,13 @@ const blogs = [
   },
   { title: "Little life 3", content: "Read the first one" },
 ];
+
 app.set("view engine", "ejs");
 
 app.listen("3000");
+
 app.use(express.static("public"));
+app.use(morgan('dev'))
 app.use((req, res, next) => {
   console.log(req.method);
   next(); //without this, the request is left hanging
