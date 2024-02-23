@@ -1,1 +1,29 @@
-body{background-color:rgb(230, 234, 230);}
+body {
+  background-color: rgba(250, 251, 250, 0.948);
+}
+.add-blog {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  padding: 5rem;
+  border: 0.05rem solid rgb(10, 44, 26);
+  border-radius: 0.3rem;
+}
+
+input {
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+textarea {
+  height: 9rem;
+}
+.publish {
+  align-self: center;
+  width: 8rem;
+  height: 2rem;
+  margin-top: 2rem;
+}
+footer {
+  position: absolute;
+  bottom: 1rem;
+}

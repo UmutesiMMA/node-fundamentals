@@ -1,0 +1,17 @@
+<h1 font="sans-serif">DETAILS</h1>
+<h3><%= blog.title%></h3>
+<h6><%=blog.snippet%></h6>
+<p><%= blog.content %></p>
+<button class="btn-delete" data-blogId="<%=blog._id%>">Delete</button>
+<script>
+  const deleteBlog = document.querySelector("button.btn-delete");
+  deleteBlog.addEventListener("click", (e) => {
+    const endPoint = `/blogs/${deleteBlog.dataset.blogId}`;
+    fetch(endPoint, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => (window.location.href = data.redirect))
+      .catch((err) => console.log(err));
+  });
+</script>

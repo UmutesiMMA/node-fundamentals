@@ -6,8 +6,10 @@
     <h4>Here goes another empty page</h4>
     <h6>Or maybe an incomplete project 💀</h6>
     <% if(blogs.length>0){%> <% blogs.map(blog=>{%>
+      <a href="/blogs/<%=blog._id%>">
     <h3><%= blog.title%></h3>
     <p><%= blog.content %></p>
+    </a>
     <% })%> <% } else{ %>
     <p>There are no blogs yet</p>
     <%}%> <%- include('./partials/footer')%>
